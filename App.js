@@ -1,20 +1,34 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, SafeAreaView, Button, Alert, TextInput } from 'react-native';
 
 export default function App() {
+  const [number, onChangeNumber] = React.useState(null);
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
+    <SafeAreaView style={styles.container}>
+      <Text>Hola mundo!</Text>
+      <Button
+        title="Presioname"
+        onPress={() => Alert.alert('Boton presionado')}
+      />
+      <TextInput
+      
+        style={styles.input}
+        onChangeText={onChangeNumber}
+        value={number}
+        placeholder="numero"
+        keyboardType="numeric"
+      
+      />
       <StatusBar style="auto" />
-    </View>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#f0f0f0',
     alignItems: 'center',
     justifyContent: 'center',
   },
