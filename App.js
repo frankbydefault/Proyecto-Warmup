@@ -9,7 +9,7 @@ export default function App() {
     <SafeAreaView style={styles.container}>
       <Text>Hola mundo!</Text>
       <Button
-        title="Presioname"
+        title="Press me"
         onPress={() => alert('Boton presionado')}
       />
       <TextInput
