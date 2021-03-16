@@ -2,7 +2,6 @@ import { StatusBar } from "expo-status-bar";
 import React from "react";
 import { styles } from "./styles";
 import { Text, SafeAreaView, Button, TextInput } from "react-native";
-import {calcCae} from './funciones/calculoCae';
 
 export default function App() {
   const [number, onChangeNumber] = React.useState(null);
