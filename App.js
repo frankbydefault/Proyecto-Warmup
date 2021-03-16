@@ -10,7 +10,7 @@ export default function App() {
       <Text>Hola mundo!</Text>
       <Button
         title="Press me"
-        onPress={() => alert('Boton presionado')}
+        onPress={() => alert('El botón se presionó')}
       />
       <TextInput
       
