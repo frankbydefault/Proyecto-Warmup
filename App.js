@@ -17,7 +17,7 @@ export default function App() {
         style={styles.input}
         onChangeText={number => onChangeNumber(number)}
         value={number}
-        placeholder="numero"
+        placeholder="number"
         keyboardType="numeric"
       
       />
