@@ -1,22 +1,34 @@
-import { StatusBar } from "expo-status-bar";
 import React from "react";
-import { styles } from "./styles";
-import { Text, SafeAreaView, Button, TextInput } from "react-native";
+import {Text, View, StyleSheet, TouchableOpacity,Alert} from 'react-native';
+import InputCredito from './components/Texto Credito'
+import InputValor from './components/Texto Cuota Mensual'
+import InputCuotas from './components/Texto N Cuotas'
 
-export default function App() {
-  const [number, onChangeNumber] = React.useState(null);
+const App =() => {
   return (
-    <SafeAreaView style={styles.container}>
-      <Text>Hola mundo! kk</Text>
-      <Button title="Press me" onPress={() => alert("El botón se presionó")} />
-      <TextInput
-        style={styles.input}
-        onChangeText={(number) => onChangeNumber(number)}
-        value={number}
-        placeholder="number"
-        keyboardType="numeric"
-      />
-      <StatusBar style="auto" />
-    </SafeAreaView>
-  );
-}
+  <View style ={styles.container}>
+    <Text style={styles.bigTitle}>Calcular Cae</Text>
+    <Text style={styles.title}>Ingrese Credito</Text>
+    <InputCredito/>
+    <Text style={styles.title}>Ingrese Valor de Cuota</Text>
+    <InputValor/>
+    <Text style={styles.title}>Ingrese Número de Cuotas</Text>
+    <InputCuotas/>
+    
+    <TouchableOpacity 
+     onPress ={() => Alert.alert('CAE calculado')}
+     style = {styles.button}
+    >
+        <Text>Calcular CAE</Text>
+    </TouchableOpacity>
+  </View>
+  ); 
+};
+const styles = StyleSheet.create({
+  container: {flex: 1, justifyContent: "center", alignItems: "center"},
+  title: {fontSize: 30},
+  bigTitle: {fontSize: 50, marginBottom: 50},
+  button: {backgroundColor: '#ff4d4d', padding: 15, marginTop: 10},
+});
+
+export default App;
