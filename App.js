@@ -1,34 +1,52 @@
 import React from "react";
-import {Text, View, StyleSheet, TouchableOpacity,Alert} from 'react-native';
-import InputCredito from './components/Texto Credito'
-import InputValor from './components/Texto Cuota Mensual'
-import InputCuotas from './components/Texto N Cuotas'
+import { StyleSheet } from "react-native";
 
-const App =() => {
+import { NavigationContainer } from "@react-navigation/native";
+import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
+
+import Historial from "./screens/Historial";
+import Inicio from "./screens/Inicio";
+
+const Tab = createMaterialBottomTabNavigator();
+
+function MyTabs() {
+  //NavBar
   return (
-  <View style ={styles.container}>
-    <Text style={styles.bigTitle}>Calcular Cae</Text>
-    <Text style={styles.title}>Ingrese Credito</Text>
-    <InputCredito/>
-    <Text style={styles.title}>Ingrese Valor de Cuota</Text>
-    <InputValor/>
-    <Text style={styles.title}>Ingrese Número de Cuotas</Text>
-    <InputCuotas/>
-    
-    <TouchableOpacity 
-     onPress ={() => Alert.alert('CAE calculado')}
-     style = {styles.button}
+    <Tab.Navigator
+      initialRouteName="Feed"
+      activeColor="#fff"
+      barStyle={{ backgroundColor: "#444" }}
     >
-        <Text>Calcular CAE</Text>
-    </TouchableOpacity>
-  </View>
-  ); 
-};
-const styles = StyleSheet.create({
-  container: {flex: 1, justifyContent: "center", alignItems: "center"},
-  title: {fontSize: 30},
-  bigTitle: {fontSize: 50, marginBottom: 50},
-  button: {backgroundColor: '#ff4d4d', padding: 15, marginTop: 10},
-});
+      <Tab.Screen
+        name="Feed"
+        component={Inicio}
+        options={{
+          tabBarLabel: "CAE",
+          tabBarIcon: ({ color }) => (
+            <MaterialCommunityIcons name="calculator" color={color} size={26} />
+          ),
+        }}
+      />
 
-export default App;
+      <Tab.Screen
+        name="Historial"
+        component={Historial}
+        options={{
+          tabBarLabel: "Historial",
+          tabBarIcon: ({ color }) => (
+            <MaterialCommunityIcons name="book" color={color} size={26} />
+          ),
+        }}
+      />
+    </Tab.Navigator>
+  );
+}
+
+export default function App() {
+  return (
+    <NavigationContainer>
+      <MyTabs />
+    </NavigationContainer>
+  );
+}
