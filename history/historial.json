@@ -1,10 +1,16 @@
 [
     {
-        "id": "1",
-        "title": "Primer Item"
-    },
-    {
-        "id": "2",
-        "title": "Segundo Item"
-    }
+        "id": "bd7acbea-c1b1-46c2-aed5-3ad53abb28ba",
+        "Credito": "6000000000",
+        "Cuota": "111111",
+        "nCuotas": "30",
+        "CAE": "18.3%"
+      },
+      {
+        "id": "bd7acbea-c1b1-46c2-aed5-3ad53abb28b0",
+        "Credito": "9048000000",
+        "Cuota": "76452",
+        "nCuotas": "50",
+        "CAE": "45.3%"
+      }
 ]

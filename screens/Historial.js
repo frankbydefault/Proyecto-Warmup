@@ -6,48 +6,14 @@ import {
   StyleSheet,
   Text,
   StatusBar,
+  RefreshControl,
 } from "react-native";
 import { createStackNavigator } from "@react-navigation/stack";
-const history = require('../history/historial.json');
+const history = require("../history/historial.json");
 
 const Stack = createStackNavigator();
-
-<<<<<<< HEAD
-const DATA = [
-  {
-    id: "bd7acbea-c1b1-46c2-aed5-3ad53abb28ba",
-    Credito: "6000000000",
-    Cuota: "111111",
-    nCuotas: "30",
-    CAE: "18.3%",
-  },
-  {
-    id: "3ac68afc-c605-48d3-a4f8-fbd91aa97f63",
-    Credito: "2000000000",
-    Cuota: "13484",
-    nCuotas: "34",
-    CAE: "38.6%",
-  },
-  {
-    id: "58694a0f-3da1-471f-bd96-145571e29d72",
-    Credito: "9000000000",
-    Cuota: "10938",
-    nCuotas: "20",
-    CAE: "29.4%",
-  },
-  {
-    id: "58694a0f-3da1-471f-bd96-145571e7772",
-    Credito: "7000000000",
-    Cuota: "937489",
-    nCuotas: "40",
-    CAE: "15.5%",
-  },
-];
-
+//fetch items
 const Item = ({ Cuota, Credito, nCuotas, CAE }) => (
-=======
-const Item = ({ title }) => (
->>>>>>> b7cfb1e97dcdc954353a35ed7d23fecdb27951c6
   <View style={styles.item}>
     <Text style={styles.title}>Credito: {Credito}</Text>
     <Text style={styles.title}>Cuota: {Cuota}</Text>
@@ -55,7 +21,7 @@ const Item = ({ title }) => (
     <Text style={styles.title}>CAE: {CAE}</Text>
   </View>
 );
-
+//Display de items
 function display() {
   const renderItem = ({ item }) => (
     <Item
@@ -66,12 +32,29 @@ function display() {
     />
   );
 
+  //Refresh (todavia no hace nada)
+  const wait = (timeout) => {
+    return new Promise((resolve) => setTimeout(resolve, timeout));
+  };
+
+  const [refreshing, setRefreshing] = React.useState(false);
+
+  const OnRefresh = React.useCallback(() => {
+    setRefreshing(true);
+    wait(2000).then(() => {
+      setRefreshing(false);
+    });
+  }, []);
+
   return (
     <SafeAreaView style={styles.container}>
       <FlatList
         data={history}
         renderItem={renderItem}
         keyExtractor={(item) => item.id}
+        refreshControl={
+          <RefreshControl refreshing={refreshing} onRefresh={OnRefresh} />
+        }
       />
     </SafeAreaView>
   );

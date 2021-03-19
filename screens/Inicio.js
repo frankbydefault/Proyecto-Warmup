@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import React, { useState } from "react";
 import {
   Text,
@@ -7,12 +6,11 @@ import {
   TouchableOpacity,
   TextInput,
   AsyncStorage,
+  Alert,
+  StatusBar,
 } from "react-native";
-=======
-import React,{useState} from "react";
-import { Text, SafeAreaView, StyleSheet, TouchableOpacity, TextInput,AsyncStorage, Alert } from "react-native";
-import { placeHolder } from '../calculoCae';
->>>>>>> b7cfb1e97dcdc954353a35ed7d23fecdb27951c6
+import { createStackNavigator } from "@react-navigation/stack";
+const Stack = createStackNavigator();
 
 function Inicio() {
   //Calcular CAE
@@ -22,8 +20,6 @@ function Inicio() {
 
   return (
     <SafeAreaView style={styles.container}>
-      <Text style={styles.bigTitle}>Calcular Cae</Text>
-
       <Text style={styles.title}>Ingrese Credito</Text>
       <TextInput
         style={styles.input}
@@ -55,7 +51,29 @@ function Inicio() {
   );
 }
 
-export default Inicio;
+function InicioHeader() {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen
+        name="InicioHeader"
+        component={Inicio}
+        options={{
+          title: "Calcular CAE",
+          headerStyle: {
+            backgroundColor: "#444",
+          },
+          headerTintColor: "#fff",
+          headerTitleStyle: {
+            fontWeight: "bold",
+          },
+          headerTitleStyle: { alignSelf: "center" },
+        }}
+      />
+    </Stack.Navigator>
+  );
+}
+
+export default InicioHeader;
 
 const styles = StyleSheet.create({
   container: {

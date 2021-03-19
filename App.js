@@ -6,7 +6,7 @@ import { createMaterialBottomTabNavigator } from "@react-navigation/material-bot
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 import Historial from "./screens/Historial";
-import Inicio from "./screens/Inicio";
+import InicioHeader from "./screens/Inicio";
 
 const Tab = createMaterialBottomTabNavigator();
 
@@ -20,7 +20,7 @@ function MyTabs() {
     >
       <Tab.Screen
         name="Feed"
-        component={Inicio}
+        component={InicioHeader}
         options={{
           tabBarLabel: "CAE",
           tabBarIcon: ({ color }) => (
