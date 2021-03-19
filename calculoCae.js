@@ -20,25 +20,26 @@ export const VAN = (Value, Io, n, C, k, min, max, rec) => {
     min = min ?? 0;
     max = max ?? 0;
     rec = rec ?? 0;
+
+    if (rec === 25) {
+        return Value;
+    }
     
     try{
 
-        let ecuacion = ecu(Io, n, C, k);
-
-        if(Value > ecuacion.toFixed(2)){
+        let ecuacion = ecu(Io, n, C, k);        
+        
+        if(Value.toFixed(2) > ecuacion.toFixed(2)){
 
             let interes = (min + k) / 2;
 
             return VAN(Value, Io, n, C, interes, min, k, rec+1);
 
-        } else if(Value < ecuacion.toFixed(2)){
+        } else if(Value.toFixed(2) < ecuacion.toFixed(2)){
 
             let interes = (k + max) / 2;
 
             return VAN(Value, Io, n, C, interes, k, max, rec+1);
-        }
-        if (rec == 25) {
-            return Value;
         }
         return k * 1200;
 

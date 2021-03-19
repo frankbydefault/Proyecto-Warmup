@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   TextInput,
   AsyncStorage,
+  Alert
 } from "react-native";
 import { VAN } from "../calculoCae";
 
@@ -81,6 +82,7 @@ const styles = StyleSheet.create({
 
   input: {
     height: 60,
+    width: 300,
     margin: 12,
     padding: 20,
     paddingHorizontal: 40,
