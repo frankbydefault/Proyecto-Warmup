@@ -6,11 +6,17 @@ import {
   TouchableOpacity,
   TextInput,
   AsyncStorage,
+<<<<<<< HEAD
   Alert,
   StatusBar,
 } from "react-native";
 import { createStackNavigator } from "@react-navigation/stack";
 const Stack = createStackNavigator();
+=======
+  Alert
+} from "react-native";
+import { VAN } from "../calculoCae";
+>>>>>>> e03a05786a8276b5f312239a99e4c02e4d4319c4
 
 function Inicio() {
   //Calcular CAE
@@ -42,7 +48,7 @@ function Inicio() {
       />
 
       <TouchableOpacity
-        onPress={() => Alert.alert("CAE calculado: " + placeHolder(credito))}
+        onPress={() => Alert.alert("CAE calculado: " + VAN(credito, cuota, nCuotas, cuota, undefined, undefined, undefined, undefined))}
         style={styles.button}
       >
         <Text>Calcular CAE</Text>
@@ -104,6 +110,7 @@ const styles = StyleSheet.create({
 
   input: {
     height: 60,
+    width: 300,
     margin: 12,
     padding: 20,
     paddingHorizontal: 40,
