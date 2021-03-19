@@ -15,7 +15,7 @@ function MyTabs() {
   return (
     <Tab.Navigator
       initialRouteName="Feed"
-      activeColor="#fff"
+      activeColor="#ff4d4d"
       barStyle={{ backgroundColor: "#444" }}
     >
       <Tab.Screen

@@ -14,30 +14,52 @@ const Stack = createStackNavigator();
 const DATA = [
   {
     id: "bd7acbea-c1b1-46c2-aed5-3ad53abb28ba",
-    title: "First Item",
+    Credito: "6000000000",
+    Cuota: "111111",
+    nCuotas: "30",
+    CAE: "18.3%",
   },
   {
     id: "3ac68afc-c605-48d3-a4f8-fbd91aa97f63",
-    title: "Second Item",
+    Credito: "2000000000",
+    Cuota: "13484",
+    nCuotas: "34",
+    CAE: "38.6%",
   },
   {
     id: "58694a0f-3da1-471f-bd96-145571e29d72",
-    title: "Third Item",
+    Credito: "9000000000",
+    Cuota: "10938",
+    nCuotas: "20",
+    CAE: "29.4%",
   },
   {
     id: "58694a0f-3da1-471f-bd96-145571e7772",
-    title: "Forth Item",
+    Credito: "7000000000",
+    Cuota: "937489",
+    nCuotas: "40",
+    CAE: "15.5%",
   },
 ];
 
-const Item = ({ title }) => (
+const Item = ({ Cuota, Credito, nCuotas, CAE }) => (
   <View style={styles.item}>
-    <Text style={styles.title}>{title}</Text>
+    <Text style={styles.title}>Credito: {Credito}</Text>
+    <Text style={styles.title}>Cuota: {Cuota}</Text>
+    <Text style={styles.title}>Numero de Cuotas: {nCuotas}</Text>
+    <Text style={styles.title}>CAE: {CAE}</Text>
   </View>
 );
 
 function display() {
-  const renderItem = ({ item }) => <Item title={item.title} />;
+  const renderItem = ({ item }) => (
+    <Item
+      Cuota={item.Cuota}
+      Credito={item.Credito}
+      nCuotas={item.nCuotas}
+      CAE={item.CAE}
+    />
+  );
 
   return (
     <SafeAreaView style={styles.container}>
@@ -80,15 +102,23 @@ const styles = StyleSheet.create({
     marginTop: StatusBar.currentHeight || 0,
   },
   item: {
-    backgroundColor: "#DFDFDF",
-    padding: 55,
-    marginVertical: 5,
-    marginHorizontal: 16,
-    borderWidth: 2,
-    borderColor: "tomato",
-    borderRadius: 40,
+    backgroundColor: "#fff",
+    padding: 20,
+    marginVertical: 10,
+    marginHorizontal: 20,
+    borderRadius: 16,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 3,
+    },
+    shadowOpacity: 0.22,
+    shadowRadius: 2.22,
+    elevation: 3,
   },
   title: {
-    fontSize: 32,
+    textAlign: "center",
+    paddingBottom: 4,
+    fontSize: 20,
   },
 });
