@@ -1,5 +1,6 @@
 import React,{useState} from "react";
-import { Text, SafeAreaView, StyleSheet, TouchableOpacity, TextInput,AsyncStorage } from "react-native";
+import { Text, SafeAreaView, StyleSheet, TouchableOpacity, TextInput,AsyncStorage, Alert } from "react-native";
+import { placeHolder } from '../calculoCae';
 
 function Inicio() {
   //Calcular CAE
@@ -34,7 +35,7 @@ function Inicio() {
       />
 
       <TouchableOpacity
-        onPress={() => Alert.alert("CAE calculado")}
+        onPress={() => Alert.alert("CAE calculado: " + placeHolder(credito))}
         style={styles.button}
       >
         <Text>Calcular CAE</Text>
