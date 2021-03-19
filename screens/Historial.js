@@ -12,7 +12,6 @@ const history = require('../history/historial.json');
 
 const Stack = createStackNavigator();
 
-<<<<<<< HEAD
 const DATA = [
   {
     id: "bd7acbea-c1b1-46c2-aed5-3ad53abb28ba",
@@ -45,9 +44,6 @@ const DATA = [
 ];
 
 const Item = ({ Cuota, Credito, nCuotas, CAE }) => (
-=======
-const Item = ({ title }) => (
->>>>>>> b7cfb1e97dcdc954353a35ed7d23fecdb27951c6
   <View style={styles.item}>
     <Text style={styles.title}>Credito: {Credito}</Text>
     <Text style={styles.title}>Cuota: {Cuota}</Text>
