@@ -12,42 +12,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 const history = require("../history/historial.json");
 
 const Stack = createStackNavigator();
-<<<<<<< HEAD
 //fetch items
-=======
-
-const DATA = [
-  {
-    id: "bd7acbea-c1b1-46c2-aed5-3ad53abb28ba",
-    Credito: "6000000000",
-    Cuota: "111111",
-    nCuotas: "30",
-    CAE: "18.3%",
-  },
-  {
-    id: "3ac68afc-c605-48d3-a4f8-fbd91aa97f63",
-    Credito: "2000000000",
-    Cuota: "13484",
-    nCuotas: "34",
-    CAE: "38.6%",
-  },
-  {
-    id: "58694a0f-3da1-471f-bd96-145571e29d72",
-    Credito: "9000000000",
-    Cuota: "10938",
-    nCuotas: "20",
-    CAE: "29.4%",
-  },
-  {
-    id: "58694a0f-3da1-471f-bd96-145571e7772",
-    Credito: "7000000000",
-    Cuota: "937489",
-    nCuotas: "40",
-    CAE: "15.5%",
-  },
-];
-
->>>>>>> e03a05786a8276b5f312239a99e4c02e4d4319c4
 const Item = ({ Cuota, Credito, nCuotas, CAE }) => (
   <View style={styles.item}>
     <Text style={styles.title}>Credito: {Credito}</Text>
