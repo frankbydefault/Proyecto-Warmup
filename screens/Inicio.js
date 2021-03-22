@@ -8,6 +8,7 @@ import {
   AsyncStorage,
   Alert,
   StatusBar,
+  Platform,
 } from "react-native";
 import { createStackNavigator } from "@react-navigation/stack";
 import {VAN } from '../calculoCae.js';
@@ -43,20 +44,35 @@ function Inicio() {
       />
 
       <TouchableOpacity
-        onPress={() =>
-          Alert.alert(
-            "CAE calculado: " +
-              VAN(
-                credito,
-                cuota,
-                nCuotas,
-                cuota,
-                undefined,
-                undefined,
-                undefined,
-                undefined
-              )
-          )
+        onPress={() => {
+
+          if(Platform.OS === 'web') alert('CAE calculado: ' + VAN(
+            credito,
+            cuota,
+            nCuotas,
+            cuota,
+            undefined,
+            undefined,
+            undefined,
+            undefined
+          ));else{
+
+            Alert.alert(
+              "CAE calculado: " +
+                VAN(
+                  credito,
+                  cuota,
+                  nCuotas,
+                  cuota,
+                  undefined,
+                  undefined,
+                  undefined,
+                  undefined
+                )
+            )
+
+                }
+              }
         }
         style={styles.button}
       >
