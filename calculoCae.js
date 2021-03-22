@@ -1,3 +1,5 @@
+const historial = require('./history/historial.json');
+
 function sumatoria(n, C, k){
     
     let res = 0;
@@ -22,7 +24,7 @@ export const VAN = (Value, Io, n, C, k, min, max, rec) => {
     rec = rec ?? 0;
 
     if (rec === 25) {
-        return Value;
+        return k * 1200;
     }
     
     try{
@@ -41,6 +43,7 @@ export const VAN = (Value, Io, n, C, k, min, max, rec) => {
 
             return VAN(Value, Io, n, C, interes, k, max, rec+1);
         }
+        cambiarHistorial(Value, C, n, k);
         return k * 1200;
 
     }catch(err){
@@ -48,4 +51,22 @@ export const VAN = (Value, Io, n, C, k, min, max, rec) => {
         throw err;
 
     }
+}
+
+const cambiarHistorial = (Credito, cuota, ncuota, cae) => {
+
+    let nuevaEntrada = {
+
+        "id": historial.length.toString(),
+        "Credito": Credito.toString(),
+        "Cuota": cuota.toString(),
+        "nCuotas": ncuota.toString(),
+        "CAE": cae.toString(),
+
+    }
+
+    let entrada = JSON.stringify(nuevaEntrada);
+
+    historial.writeFile('./history/historial.json', entrada);
+
 }
