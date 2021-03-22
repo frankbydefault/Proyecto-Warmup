@@ -128,6 +128,5 @@ const styles = StyleSheet.create({
     textAlign: "center",
     borderRadius: 30,
     fontSize: 15,
-    outline: 0,
   },
 });
