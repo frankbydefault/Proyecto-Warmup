@@ -11,7 +11,7 @@ import {
   Platform,
 } from "react-native";
 import { createStackNavigator } from "@react-navigation/stack";
-import {VAN } from '../calculoCae.js';
+import { VAN } from '../calculoCae.js';
 const Stack = createStackNavigator();
 
 function Inicio() {
