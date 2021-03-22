@@ -25,8 +25,8 @@ const Item = ({ Cuota, Credito, nCuotas, CAE }) => (
 function display() {
   const renderItem = ({ item }) => (
     <Item
-      Cuota={item.Cuota}
-      Credito={item.Credito}
+      Cuota={'$' + item.Cuota.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")}
+      Credito={'$' + item.Credito.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")}
       nCuotas={item.nCuotas}
       CAE={item.CAE}
     />

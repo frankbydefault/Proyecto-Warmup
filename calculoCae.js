@@ -29,13 +29,13 @@ export const VAN = (Value, Io, n, C, k, min, max, rec) => {
 
         let ecuacion = ecu(Io, n, C, k);        
         
-        if(Value.toFixed(2) > ecuacion.toFixed(2)){
+        if(parseFloat(Value).toFixed(2) > parseFloat(ecuacion).toFixed(2)){
 
             let interes = (min + k) / 2;
 
             return VAN(Value, Io, n, C, interes, min, k, rec+1);
 
-        } else if(Value.toFixed(2) < ecuacion.toFixed(2)){
+        } else if(parseFloat(Value).toFixed(2) < parseFloat(ecuacion).toFixed(2)){
 
             let interes = (k + max) / 2;
 
