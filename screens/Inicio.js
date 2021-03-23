@@ -25,6 +25,7 @@ function Inicio() {
       <Text style={styles.title}>Ingrese Credito</Text>
       <TextInput
         style={styles.input}
+        keyboardType='numeric'  
         placeholder="Precio al contado"
         onChangeText={(val) => setCredito(val)}
       />
@@ -32,6 +33,7 @@ function Inicio() {
       <Text style={styles.title}>Ingrese Valor de Cuota</Text>
       <TextInput
         style={styles.input}
+        keyboardType='numeric'
         placeholder="Valor de la cuota mensual"
         onChangeText={(val) => setCuota(val)}
       />
@@ -39,6 +41,7 @@ function Inicio() {
       <Text style={styles.title}>Ingrese Número de Cuotas</Text>
       <TextInput
         style={styles.input}
+        keyboardType='numeric'
         placeholder="Numero de cuotas"
         onChangeText={(val) => setNcuotas(val)}
       />
