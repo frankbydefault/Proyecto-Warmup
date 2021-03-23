@@ -10,9 +10,12 @@ import {
   StatusBar,
   Platform,
 } from "react-native";
+
+//imports
 import { createStackNavigator } from "@react-navigation/stack";
 import {VAN } from '../calculoCae.js';
-import { createTypeAnnotationBasedOnTypeof } from "@babel/types";
+import { TextInputMask } from 'react-native-masked-text';
+
 const Stack = createStackNavigator();
 
 function Inicio() {
@@ -20,9 +23,33 @@ function Inicio() {
   const [credito, setCredito] = useState("");
   const [cuota, setCuota] = useState("");
   const [nCuotas, setNcuotas] = useState("");
+  const [prueba, setPrueba] = useState("");
 
+// Instalen
+// npm install react-native-masked-text --save
+// así se hace para formatear el texto usando el TextInputMask para que al escribir los valores quedan con formato de dinero.   
+// Pero hay un problema:
+// el valor {prueba} de la linea 49 queda en formato con puntos y $, habría que sacarlo antes de ingresarlo a la función del VAN, o después.   
   return (
     <SafeAreaView style={styles.container}>
+     <Text style={styles.title}>Prueba valor con formato $</Text>
+      <TextInputMask
+        type={'money'}
+        value={prueba}
+        style={styles.input}
+        placeholder="Valor crédito de prueba"
+        options={{
+          precision: 0,
+          separator: '',
+          delimiter: '.',
+          unit: '$',
+          suffixUnit: ''
+        }}
+        onChangeText={text => setPrueba(text)}
+      />
+      <Text style={styles.title}>{prueba}</Text> 
+
+
       <Text style={styles.title}>Ingrese Credito</Text>
       <TextInput
         style={styles.input}
