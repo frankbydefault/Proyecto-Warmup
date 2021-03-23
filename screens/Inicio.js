@@ -11,7 +11,7 @@ import {
   Platform,
 } from "react-native";
 import { createStackNavigator } from "@react-navigation/stack";
-import { VAN } from '../calculoCae.js';
+import {VAN } from '../calculoCae.js';
 const Stack = createStackNavigator();
 
 function Inicio() {
@@ -46,32 +46,37 @@ function Inicio() {
       <TouchableOpacity
         onPress={() => {
 
-          if(Platform.OS === 'web') alert('CAE calculado: ' + VAN(
-            credito,
-            cuota,
-            nCuotas,
-            cuota,
-            undefined,
-            undefined,
-            undefined,
-            undefined
-          ));else{
+          if(Platform.OS === 'web'){
 
-            Alert.alert(
-              "CAE calculado: " +
-                VAN(
-                  credito,
-                  cuota,
-                  nCuotas,
-                  cuota,
-                  undefined,
-                  undefined,
-                  undefined,
-                  undefined
-                )
-            )
+            alert('CAE calculado: ' + VAN(
+              credito,
+              cuota,
+              nCuotas,
+              cuota,
+              undefined,
+              undefined,
+              undefined,
+              undefined
+            ));
 
-                }
+          }else{
+
+          Alert.alert(
+            "CAE calculado: " +
+              VAN(
+                credito,
+                cuota,
+                nCuotas,
+                cuota,
+                undefined,
+                undefined,
+                undefined,
+                undefined
+              )
+
+          )
+
+              }
               }
         }
         style={styles.button}

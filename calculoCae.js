@@ -24,7 +24,7 @@ export const VAN = (Value, Io, n, C, k, min, max, rec) => {
     rec = rec ?? 0;
 
     if (rec === 25) {
-        return parseFloat(k * 1200).toFixed(2);
+        return k * 1200;
     }
     
     try{
@@ -44,7 +44,7 @@ export const VAN = (Value, Io, n, C, k, min, max, rec) => {
             return VAN(Value, Io, n, C, interes, k, max, rec+1);
         }
         cambiarHistorial(Value, C, n, k);
-        return parseFloat(k * 1200).toFixed(2);
+        return k * 1200;
 
     }catch(err){
 
