@@ -12,6 +12,7 @@ import {
 } from "react-native";
 import { createStackNavigator } from "@react-navigation/stack";
 import {VAN } from '../calculoCae.js';
+import { createTypeAnnotationBasedOnTypeof } from "@babel/types";
 const Stack = createStackNavigator();
 
 function Inicio() {
@@ -47,41 +48,26 @@ function Inicio() {
       />
 
       <TouchableOpacity
-        onPress={() => {
+        onPress={() => 
+          {
 
-          if(Platform.OS === 'web'){
+            if(parseFloat(credito) && parseFloat(cuota) && parseFloat(nCuotas)){
 
-            alert('CAE calculado: ' + VAN(
-              credito,
-              cuota,
-              nCuotas,
-              cuota,
-              undefined,
-              undefined,
-              undefined,
-              undefined
-            ));
+              if(Platform.OS === 'web') alert('CAE calculado: ' + VAN(credito, cuota, nCuotas, cuota, undefined, undefined, undefined, undefined));
 
-          }else{
+              else Alert.alert('CAE calculado: ' + VAN(credito, cuota, nCuotas, cuota, undefined, undefined, undefined, undefined));
 
-          Alert.alert(
-            "CAE calculado: " +
-              VAN(
-                credito,
-                cuota,
-                nCuotas,
-                cuota,
-                undefined,
-                undefined,
-                undefined,
-                undefined
-              )
+            }else{
 
-          )
+              if(Platform.OS === 'web') alert('Los valores ingresados deben ser números');
 
-              }
-              }
-        }
+              else Alert.alert('Los valores ingresados deben ser números');
+
+            }
+
+          }
+
+      }
         style={styles.button}
       >
         <Text>Calcular CAE</Text>

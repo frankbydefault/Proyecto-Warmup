@@ -67,6 +67,4 @@ const cambiarHistorial = (Credito, cuota, ncuota, cae) => {
 
     let entrada = JSON.stringify(nuevaEntrada);
 
-    historial.writeFile('./history/historial.json', entrada);
-
 }
