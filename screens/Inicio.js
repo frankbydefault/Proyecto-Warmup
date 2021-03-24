@@ -13,7 +13,8 @@ import {
 
 //imports
 import { createStackNavigator } from "@react-navigation/stack";
-import { VAN } from "../calculoCae.js";
+//import { VAN } from "../calculoCae.js";
+import { VAN } from "../calculoCae2.js";
 import { TextInputMask } from "react-native-masked-text";
 import firebase from "../history/firebase";
 
@@ -41,7 +42,8 @@ function Inicio() {
 
     }
       if(Platform.OS === 'web') alert('CAE calculado: ' + VAN(credito, cuota, nCuotas, cuota));
-      else Alert.alert('CAE calculado: ' + VAN(credito, cuota, nCuotas, cuota));
+      //else Alert.alert('CAE calculado: ' + VAN(credito, cuota, nCuotas, cuota));
+      else Alert.alert('CAE calculado: ' + VAN(credito,nCuotas, cuota));
   }
 
   return (
