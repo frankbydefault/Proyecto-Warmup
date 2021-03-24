@@ -26,7 +26,7 @@ function Inicio() {
   const [nCuotas, setNcuotas] = useState("");
 
   //Guarda la data en la base de datos
-  const saveData = async () => {
+  const saveData = async (credito, cuota, nCuotas) => {
     if (credito === "" || cuota === "" || nCuotas === "") {
       alert("Rellene todos los campos");
     } else {
@@ -34,15 +34,16 @@ function Inicio() {
         Credito: credito,
         Cuota: cuota,
         nCuotas: nCuotas,
-        //Falta agregar el CAE aqui
+        cae: VAN(credito, cuota, nCuotas, cuota),
       });
     }
   };
 
   function Compuesta() {
     //Para poner dos funciones en el "onPress" hay que hacer una funcion compuesta
-    saveData();
-    calculoCae(credito, cuota, nCuotas);
+    saveData(credito, cuota, nCuotas);
+    if(Platform.OS === 'web') alert('CAE calculado: ' + VAN(credito, cuota, nCuotas, cuota));
+    else Alert.alert('CAE calculado: ' + VAN(credito, cuota, nCuotas, cuota));
   }
 
   return (
