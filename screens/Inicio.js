@@ -23,21 +23,16 @@ function Inicio() {
   const [credito, setCredito] = useState("");
   const [cuota, setCuota] = useState("");
   const [nCuotas, setNcuotas] = useState("");
-  const [prueba, setPrueba] = useState("");
-
-// Instalen
-// npm install react-native-masked-text --save
-// así se hace para formatear el texto usando el TextInputMask para que al escribir los valores quedan con formato de dinero.   
-// Pero hay un problema:
-// el valor {prueba} de la linea 49 queda en formato con puntos y $, habría que sacarlo antes de ingresarlo a la función del VAN, o después.   
+ 
   return (
     <SafeAreaView style={styles.container}>
-     <Text style={styles.title}>Prueba valor con formato $</Text>
+     <Text style={styles.title}>Ingrese Crédito</Text>
       <TextInputMask
         type={'money'}
-        value={prueba}
+        value={credito}
         style={styles.input}
-        placeholder="Valor crédito de prueba"
+        placeholder="Ej. $1.000.000"
+        includeRawValueInChangeText={true}
         options={{
           precision: 0,
           separator: '',
@@ -45,32 +40,31 @@ function Inicio() {
           unit: '$',
           suffixUnit: ''
         }}
-        onChangeText={text => setPrueba(text)}
-      />
-      <Text style={styles.title}>{prueba}</Text> 
-
-
-      <Text style={styles.title}>Ingrese Credito</Text>
-      <TextInput
-        style={styles.input}
-        keyboardType='numeric'  
-        placeholder="Precio al contado"
-        onChangeText={(val) => setCredito(val)}
+        onChangeText={(text,rawValue) => setCredito(rawValue)}
       />
 
       <Text style={styles.title}>Ingrese Valor de Cuota</Text>
-      <TextInput
+      <TextInputMask
+        type={'money'}
+        value={cuota}
         style={styles.input}
-        keyboardType='numeric'
-        placeholder="Valor de la cuota mensual"
-        onChangeText={(val) => setCuota(val)}
+        placeholder="Ej. $120.000"
+        includeRawValueInChangeText={true}
+        options={{
+          precision: 0,
+          separator: '',
+          delimiter: '.',
+          unit: '$',
+          suffixUnit: ''
+        }}
+        onChangeText={(text,rawValue) => setCuota(rawValue)}
       />
 
-      <Text style={styles.title}>Ingrese Número de Cuotas</Text>
+<Text style={styles.title}>Ingrese Número de Cuotas</Text>
       <TextInput
         style={styles.input}
         keyboardType='numeric'
-        placeholder="Numero de cuotas"
+        placeholder="Ej. 12"
         onChangeText={(val) => setNcuotas(val)}
       />
 
