@@ -24,8 +24,8 @@ export const VAN = (Value, Io, n, C, k, min, max, rec) => {
     rec = rec ?? 0;
 
     if (rec === 25) {
-        cambiarHistorial(Value, C, n, (Math.pow(1 + k, 12) - 1) * 100);
-        return (Math.pow(1 + k, 1/12) - 1) * 100;
+        cambiarHistorial(Value, C, n, (Math.pow(1 + k, 12) - 1));
+        return (Math.pow(1 + k, 12) - 1);
     }
     
     try{
@@ -44,8 +44,8 @@ export const VAN = (Value, Io, n, C, k, min, max, rec) => {
 
             return VAN(Value, Io, n, C, interes, k, max, rec+1);
         }
-        cambiarHistorial(Value, C, n, (Math.pow(1 + k, 12) - 1) * 100);
-        return (Math.pow(1 + k, 12) - 1) * 100;
+        cambiarHistorial(Value, C, n, (Math.pow(1 + k, 12) - 1));
+        return (Math.pow(1 + k, 12) - 1);
 
     }catch(err){
 
