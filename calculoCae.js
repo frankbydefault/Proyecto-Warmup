@@ -1,5 +1,5 @@
-var Datastore = require('react-native-local-mongodb')
-  , db = new Datastore();
+var Datastore = require('react-native-local-mongodb');
+export var db = new Datastore();
 function sumatoria(n, C, k){
     
     let res = 0;
@@ -57,7 +57,6 @@ const cambiarHistorial = (Credito, cuota, ncuota, cae) => {
 
     let nuevaEntrada = {
 
-        "id": historial.length.toString(),
         "Credito": Credito.toString(),
         "Cuota": cuota.toString(),
         "nCuotas": ncuota.toString(),
@@ -65,6 +64,6 @@ const cambiarHistorial = (Credito, cuota, ncuota, cae) => {
 
     }
 
-    db.insert(nuevaentrada);
+    db.insert(nuevaEntrada);
 
 }

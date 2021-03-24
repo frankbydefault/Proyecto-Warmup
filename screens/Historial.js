@@ -1,5 +1,3 @@
-var Datastore = require('react-native-local-mongodb')
-  , db = new Datastore();
 import React from "react";
 import {
   SafeAreaView,
@@ -11,7 +9,8 @@ import {
   RefreshControl,
 } from "react-native";
 import { createStackNavigator } from "@react-navigation/stack";
-const history = require("../history/historial.json");
+import firebase from '../history/firebase';
+import {db} from '../calculoCae';
 
 const Stack = createStackNavigator();
 //fetch items
@@ -48,6 +47,13 @@ function display() {
     });
   }, []);
 
+  let history = [];
+  db.find({}).exec(function(err, docs){
+
+    docs.forEach(element => history.push(element));
+
+  });
+  console.log(history);
   return (
     <SafeAreaView style={styles.container}>
       <FlatList
@@ -63,7 +69,6 @@ function display() {
 }
 
 function Historial() {
-  console.log(db.find({}));
   return (
     <Stack.Navigator>
       <Stack.Screen

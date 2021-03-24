@@ -26,22 +26,9 @@ function Inicio() {
   const [nCuotas, setNcuotas] = useState("");
 
   //Guarda la data en la base de datos
-  const saveData = async (credito, cuota, nCuotas) => {
-    if (credito === "" || cuota === "" || nCuotas === "") {
-      alert("Rellene todos los campos");
-    } else {
-      await firebase.db.collection("data").add({
-        Credito: credito,
-        Cuota: cuota,
-        nCuotas: nCuotas,
-        cae: VAN(credito, cuota, nCuotas, cuota),
-      });
-    }
-  };
 
   function Compuesta() {
     //Para poner dos funciones en el "onPress" hay que hacer una funcion compuesta
-    saveData(credito, cuota, nCuotas);
     if(Platform.OS === 'web') alert('CAE calculado: ' + VAN(credito, cuota, nCuotas, cuota));
     else Alert.alert('CAE calculado: ' + VAN(credito, cuota, nCuotas, cuota));
   }
