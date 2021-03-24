@@ -1,5 +1,5 @@
-const historial = require('./history/historial.json');
-
+var Datastore = require('react-native-local-mongodb')
+  , db = new Datastore();
 function sumatoria(n, C, k){
     
     let res = 0;
@@ -24,27 +24,27 @@ export const VAN = (Value, Io, n, C, k, min, max, rec) => {
     rec = rec ?? 0;
 
     if (rec === 25) {
-        return k * 1200;
+        return Math.pow(1 + k, 12) - 1;
     }
     
     try{
 
         let ecuacion = ecu(Io, n, C, k);        
         
-        if(parseFloat(Value).toFixed(2) > parseFloat(ecuacion).toFixed(2)){
+        if(0 < parseFloat(ecuacion).toFixed(2)){
 
             let interes = (min + k) / 2;
 
             return VAN(Value, Io, n, C, interes, min, k, rec+1);
 
-        } else if(parseFloat(Value).toFixed(2) < parseFloat(ecuacion).toFixed(2)){
+        } else if(0 > parseFloat(ecuacion).toFixed(2)){
 
             let interes = (k + max) / 2;
 
             return VAN(Value, Io, n, C, interes, k, max, rec+1);
         }
         cambiarHistorial(Value, C, n, k);
-        return k * 1200;
+        return Math.pow(1 + k, 12) - 1;
 
     }catch(err){
 
@@ -65,6 +65,6 @@ const cambiarHistorial = (Credito, cuota, ncuota, cae) => {
 
     }
 
-    let entrada = JSON.stringify(nuevaEntrada);
+    db.insert(nuevaentrada);
 
 }

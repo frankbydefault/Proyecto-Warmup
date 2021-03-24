@@ -1,3 +1,5 @@
+var Datastore = require('react-native-local-mongodb')
+  , db = new Datastore();
 import React from "react";
 import {
   SafeAreaView,
@@ -61,6 +63,7 @@ function display() {
 }
 
 function Historial() {
+  console.log(db.find({}));
   return (
     <Stack.Navigator>
       <Stack.Screen
