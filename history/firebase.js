@@ -1,4 +1,5 @@
 //Conexion a la base de datos
+//Installar : npm install i firebase
 import firebase from "firebase";
 import "firebase/firestore";
 
