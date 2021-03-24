@@ -13,8 +13,9 @@ import {
 
 //imports
 import { createStackNavigator } from "@react-navigation/stack";
-import {VAN } from '../calculoCae.js';
-import { TextInputMask } from 'react-native-masked-text';
+import { VAN } from "../calculoCae.js";
+import { TextInputMask } from "react-native-masked-text";
+import firebase from "../history/firebase";
 
 const Stack = createStackNavigator();
 
@@ -23,78 +24,118 @@ function Inicio() {
   const [credito, setCredito] = useState("");
   const [cuota, setCuota] = useState("");
   const [nCuotas, setNcuotas] = useState("");
- 
+
+  //Guarda la data en la base de datos
+  const saveData = async () => {
+    if (credito === "" || cuota === "" || nCuotas === "") {
+      alert("Rellene todos los campos");
+    } else {
+      await firebase.db.collection("data").add({
+        Credito: credito,
+        Cuota: cuota,
+        nCuotas: nCuotas,
+        //Falta agregar el CAE aqui
+      });
+    }
+  };
+
+  function Compuesta() {
+    //Para poner dos funciones en el "onPress" hay que hacer una funcion compuesta
+    saveData();
+    calculoCae(credito, cuota, nCuotas);
+  }
+
   return (
     <SafeAreaView style={styles.container}>
-     <Text style={styles.title}>Ingrese Crédito</Text>
+      <Text style={styles.title}>Ingrese Crédito</Text>
       <TextInputMask
-        type={'money'}
+        type={"money"}
         value={credito}
         style={styles.input}
         placeholder="Ej. $1.000.000"
         includeRawValueInChangeText={true}
         options={{
           precision: 0,
-          separator: '',
-          delimiter: '.',
-          unit: '$',
-          suffixUnit: ''
+          separator: "",
+          delimiter: ".",
+          unit: "$",
+          suffixUnit: "",
         }}
-        onChangeText={(text,rawValue) => setCredito(rawValue)}
+        onChangeText={(text, rawValue) => setCredito(rawValue)}
       />
 
       <Text style={styles.title}>Ingrese Valor de Cuota</Text>
       <TextInputMask
-        type={'money'}
+        type={"money"}
         value={cuota}
         style={styles.input}
         placeholder="Ej. $120.000"
         includeRawValueInChangeText={true}
         options={{
           precision: 0,
-          separator: '',
-          delimiter: '.',
-          unit: '$',
-          suffixUnit: ''
+          separator: "",
+          delimiter: ".",
+          unit: "$",
+          suffixUnit: "",
         }}
-        onChangeText={(text,rawValue) => setCuota(rawValue)}
+        onChangeText={(text, rawValue) => setCuota(rawValue)}
       />
 
-<Text style={styles.title}>Ingrese Número de Cuotas</Text>
+      <Text style={styles.title}>Ingrese Número de Cuotas</Text>
       <TextInput
         style={styles.input}
-        keyboardType='numeric'
+        keyboardType="numeric"
         placeholder="Ej. 12"
         onChangeText={(val) => setNcuotas(val)}
       />
 
       <TouchableOpacity
-        onPress={() => 
-          {
-
-            if(parseFloat(credito) && parseFloat(cuota) && parseFloat(nCuotas)){
-
-              if(Platform.OS === 'web') alert('CAE calculado: ' + VAN(credito, cuota, nCuotas, cuota, undefined, undefined, undefined, undefined));
-
-              else Alert.alert('CAE calculado: ' + VAN(credito, cuota, nCuotas, cuota, undefined, undefined, undefined, undefined));
-
-            }else{
-
-              if(Platform.OS === 'web') alert('Los valores ingresados deben ser números');
-
-              else Alert.alert('Los valores ingresados deben ser números');
-
-            }
-
-          }
-
-      }
+        onPress={() => {
+          Compuesta();
+        }}
         style={styles.button}
       >
         <Text>Calcular CAE</Text>
       </TouchableOpacity>
     </SafeAreaView>
   );
+}
+//funcion de calculo del cae
+function calculoCae(credito, cuota, nCuotas) {
+  if (parseFloat(credito) && parseFloat(cuota) && parseFloat(nCuotas)) {
+    if (Platform.OS === "web")
+      alert(
+        "CAE calculado: " +
+          VAN(
+            credito,
+            cuota,
+            nCuotas,
+            cuota,
+            undefined,
+            undefined,
+            undefined,
+            undefined
+          )
+      );
+    else
+      Alert.alert(
+        "CAE calculado: " +
+          VAN(
+            credito,
+            cuota,
+            nCuotas,
+            cuota,
+            undefined,
+            undefined,
+            undefined,
+            undefined
+          )
+      );
+  } else {
+    if (Platform.OS === "web")
+      alert("Los valores ingresados deben ser números");
+    else Alert.alert("Los valores ingresados deben ser números");
+  }
 }
 
 function InicioHeader() {
