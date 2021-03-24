@@ -12,7 +12,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import firebase from '../history/firebase';
 import {db} from '../calculoCae';
 
-let datos = [{}];
+let datos = [{id: "-1"}];
 
 const Stack = createStackNavigator();
 //fetch items
@@ -60,7 +60,7 @@ function display() {
       <FlatList
         data={datos}
         renderItem={renderItem}
-        keyExtractor={(item) => item._id}
+        keyExtractor={(item) => item.id}
         refreshControl={
           <RefreshControl refreshing={refreshing} onRefresh={OnRefresh} />
         }
@@ -75,7 +75,6 @@ function Historial() {
     docs.forEach(element => datos.push(JSON.parse(JSON.stringify(element))));
 
   });
-  
   return (
     <Stack.Navigator>
       <Stack.Screen

@@ -24,8 +24,8 @@ export const VAN = (Value, Io, n, C, k, min, max, rec) => {
     rec = rec ?? 0;
 
     if (rec === 25) {
-        cambiarHistorial(Value, C, n, (Math.pow(1 + k, 12) - 1));
-        return (Math.pow(1 + k, 12) - 1);
+        cambiarHistorial(Value, C, n, (Math.pow(1 + k, 12) - 1).toFixed(2));
+        return (Math.pow(1 + k, 12) - 1).toFixed(2);
     }
     
     try{
@@ -44,8 +44,8 @@ export const VAN = (Value, Io, n, C, k, min, max, rec) => {
 
             return VAN(Value, Io, n, C, interes, k, max, rec+1);
         }
-        cambiarHistorial(Value, C, n, (Math.pow(1 + k, 12) - 1));
-        return (Math.pow(1 + k, 12) - 1);
+        cambiarHistorial(Value, C, n, (Math.pow(1 + k, 12) - 1).toFixed(2));
+        return (Math.pow(1 + k, 12) - 1).toFixed(2);
 
     }catch(err){
 
@@ -56,15 +56,23 @@ export const VAN = (Value, Io, n, C, k, min, max, rec) => {
 
 const cambiarHistorial = (Credito, cuota, ncuota, cae) => {
 
-    let nuevaEntrada = {
+    db.count({}, function(err, docs){
 
-        Credito: Credito,
-        Cuota: cuota,
-        nCuotas: ncuota,
-        CAE: (cae * 100),
 
-    }
 
-    db.insert(nuevaEntrada);
+        let nuevaEntrada = {
+
+            id: docs.toString(),
+            Credito: Credito,
+            Cuota: cuota,
+            nCuotas: ncuota,
+            CAE: cae,
+    
+        }
+    
+        db.insert(nuevaEntrada);
+
+
+    })
 
 }

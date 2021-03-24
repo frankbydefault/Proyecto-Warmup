@@ -29,8 +29,19 @@ function Inicio() {
 
   function Compuesta() {
     //Para poner dos funciones en el "onPress" hay que hacer una funcion compuesta
-    if(Platform.OS === 'web') alert('CAE calculado: ' + VAN(credito, cuota, nCuotas, cuota));
-    else Alert.alert('CAE calculado: ' + VAN(credito, cuota, nCuotas, cuota));
+    if(credito === '' || cuota === '' || nCuotas === ''){
+      if(Platform.OS === 'web') alert('Se deben rellenar todos los valores.');
+      else Alert.alert('Se deben rellenar todos los valores.');
+      return;
+    }
+    if(!parseFloat(nCuotas)){
+      if(Platform.OS === 'web') alert('Los valores deben ser numéricos.');
+      else Alert.alert('Los valores deben ser numéricos.');
+      return;
+
+    }
+      if(Platform.OS === 'web') alert('CAE calculado: ' + VAN(credito, cuota, nCuotas, cuota));
+      else Alert.alert('CAE calculado: ' + VAN(credito, cuota, nCuotas, cuota));
   }
 
   return (
@@ -87,43 +98,6 @@ function Inicio() {
       </TouchableOpacity>
     </SafeAreaView>
   );
-}
-//funcion de calculo del cae
-function calculoCae(credito, cuota, nCuotas) {
-  if (parseFloat(credito) && parseFloat(cuota) && parseFloat(nCuotas)) {
-    if (Platform.OS === "web")
-      alert(
-        "CAE calculado: " +
-          VAN(
-            credito,
-            cuota,
-            nCuotas,
-            cuota,
-            undefined,
-            undefined,
-            undefined,
-            undefined
-          )
-      );
-    else
-      Alert.alert(
-        "CAE calculado: " +
-          VAN(
-            credito,
-            cuota,
-            nCuotas,
-            cuota,
-            undefined,
-            undefined,
-            undefined,
-            undefined
-          )
-      );
-  } else {
-    if (Platform.OS === "web")
-      alert("Los valores ingresados deben ser números");
-    else Alert.alert("Los valores ingresados deben ser números");
-  }
 }
 
 function InicioHeader() {
