@@ -12,6 +12,8 @@ import { createStackNavigator } from "@react-navigation/stack";
 import firebase from '../history/firebase';
 import {db} from '../calculoCae';
 
+let datos = [{}];
+
 const Stack = createStackNavigator();
 //fetch items
 const Item = ({ Cuota, Credito, nCuotas, CAE }) => (
@@ -24,14 +26,19 @@ const Item = ({ Cuota, Credito, nCuotas, CAE }) => (
 );
 //Display de items
 function display() {
-  const renderItem = ({ item }) => (
+  const renderItem = ({ item }) => {
+
+    if(item.Cuota === undefined || item.Credito === undefined || item.nCuotas === undefined && item.CAE === undefined) return (<></>);
+
+    return (
     <Item
-      Cuota={'$' + item.Cuota.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")}
-      Credito={'$' + item.Credito.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")}
+      Cuota={'$' + item.Cuota?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")}
+      Credito={'$' + item.Credito?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")}
       nCuotas={item.nCuotas}
       CAE={item.CAE}
     />
   );
+    }
 
   //Refresh (todavia no hace nada)
   const wait = (timeout) => {
@@ -47,19 +54,13 @@ function display() {
     });
   }, []);
 
-  let history = [];
-  db.find({}).exec(function(err, docs){
-
-    docs.forEach(element => history.push(element));
-
-  });
-  console.log(history);
+  
   return (
     <SafeAreaView style={styles.container}>
       <FlatList
-        data={history}
+        data={datos}
         renderItem={renderItem}
-        keyExtractor={(item) => item.id}
+        keyExtractor={(item) => item._id}
         refreshControl={
           <RefreshControl refreshing={refreshing} onRefresh={OnRefresh} />
         }
@@ -69,6 +70,12 @@ function display() {
 }
 
 function Historial() {
+  db.find({}).exec(function(err, docs){
+
+    docs.forEach(element => datos.push(JSON.parse(JSON.stringify(element))));
+
+  });
+  
   return (
     <Stack.Navigator>
       <Stack.Screen

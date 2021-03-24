@@ -24,7 +24,8 @@ export const VAN = (Value, Io, n, C, k, min, max, rec) => {
     rec = rec ?? 0;
 
     if (rec === 25) {
-        return Math.pow(1 + k, 12) - 1;
+        cambiarHistorial(Value, C, n, (Math.pow(1 + k, 12) - 1) * 100);
+        return (Math.pow(1 + k, 1/12) - 1) * 100;
     }
     
     try{
@@ -43,8 +44,8 @@ export const VAN = (Value, Io, n, C, k, min, max, rec) => {
 
             return VAN(Value, Io, n, C, interes, k, max, rec+1);
         }
-        cambiarHistorial(Value, C, n, k);
-        return Math.pow(1 + k, 12) - 1;
+        cambiarHistorial(Value, C, n, (Math.pow(1 + k, 12) - 1) * 100);
+        return (Math.pow(1 + k, 12) - 1) * 100;
 
     }catch(err){
 
@@ -57,10 +58,10 @@ const cambiarHistorial = (Credito, cuota, ncuota, cae) => {
 
     let nuevaEntrada = {
 
-        "Credito": Credito.toString(),
-        "Cuota": cuota.toString(),
-        "nCuotas": ncuota.toString(),
-        "CAE": cae.toString(),
+        Credito: Credito,
+        Cuota: cuota,
+        nCuotas: ncuota,
+        CAE: (cae * 100),
 
     }
 
