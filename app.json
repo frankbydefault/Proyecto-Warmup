@@ -5,6 +5,7 @@
     "name": "ProjectWarmup",
     "slug": "ProjectWarmup",
     "version": "1.0.0",
+    "icon":"./Calculator-icon.png",
     "assetBundlePatterns": [
       "**/*"
     ],

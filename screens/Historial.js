@@ -7,7 +7,6 @@ import {
   Text,
   StatusBar,
   RefreshControl,
-  Button,
 } from "react-native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { db } from "../calculoCae2";
@@ -81,7 +80,6 @@ function display() {
           <RefreshControl refreshing={refreshing} onRefresh={OnRefresh} />
         }
       />
-      <Button onPress={() => OnRefresh} title="Refrescar" color="#444" />
     </SafeAreaView>
   );
 }

@@ -5,18 +5,14 @@ import {
   StyleSheet,
   TouchableOpacity,
   TextInput,
-  AsyncStorage,
   Alert,
-  StatusBar,
   Platform,
 } from "react-native";
 
 //imports
 import { createStackNavigator } from "@react-navigation/stack";
-//import { VAN } from "../calculoCae.js";
 import { VAN } from "../calculoCae2.js";
 import { TextInputMask } from "react-native-masked-text";
-import firebase from "../history/firebase";
 
 const Stack = createStackNavigator();
 
@@ -30,20 +26,20 @@ function Inicio() {
 
   function Compuesta() {
     //Para poner dos funciones en el "onPress" hay que hacer una funcion compuesta
-    if(credito === '' || cuota === '' || nCuotas === ''){
-      if(Platform.OS === 'web') alert('Se deben rellenar todos los valores.');
-      else Alert.alert('Se deben rellenar todos los valores.');
+    if (credito === "" || cuota === "" || nCuotas === "") {
+      if (Platform.OS === "web") alert("Se deben rellenar todos los valores.");
+      else Alert.alert("Se deben rellenar todos los valores.");
       return;
     }
-    if(!parseFloat(nCuotas)){
-      if(Platform.OS === 'web') alert('Los valores deben ser numéricos.');
-      else Alert.alert('Los valores deben ser numéricos.');
+    if (!parseFloat(nCuotas)) {
+      if (Platform.OS === "web") alert("Los valores deben ser numéricos.");
+      else Alert.alert("Los valores deben ser numéricos.");
       return;
-
     }
-      if(Platform.OS === 'web') alert('CAE calculado: ' + VAN(credito, cuota, nCuotas, cuota));
-      //else Alert.alert('CAE calculado: ' + VAN(credito, cuota, nCuotas, cuota));
-      else Alert.alert('CAE calculado: ' + VAN(credito,nCuotas, cuota));
+    if (Platform.OS === "web")
+      alert("CAE calculado: " + VAN(credito, cuota, nCuotas, cuota));
+    //else Alert.alert('CAE calculado: ' + VAN(credito, cuota, nCuotas, cuota));
+    else Alert.alert("CAE calculado: " + VAN(credito, nCuotas, cuota));
   }
 
   return (

@@ -34,6 +34,7 @@ export const VAN = (vContado, nCuotas, vCuota) => {
       let ecuacion = ecu(tTentativa, vContado, nCuotas, vCuota);
 
       if (ecuacion < delta && ecuacion > 0) {
+        cambiarHistorial(vContado, vCuota, nCuotas, conversion(tTentativa));
         return conversion(tTentativa);
       } else if (ecuacion > 0) {
         tMenor = tTentativa;
